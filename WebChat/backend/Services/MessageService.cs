@@ -1,7 +1,7 @@
 using backend.Models;
 using backend.Repositories;
 
-namespace backend.Services.Implementations;
+namespace backend.Services;
 
 public class MessageService(MessageRepository messageRepository)
 {
