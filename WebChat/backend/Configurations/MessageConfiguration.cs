@@ -16,7 +16,7 @@ public class MessageConfiguration : IEntityTypeConfiguration<Message>
             .IsRequired();
         
         builder.Property(x => x.Text)
-            .HasColumnType("varchar(2048)")
+            .HasColumnType("nvarchar(2048)")
             .IsRequired();
         
         builder.Property(x => x.Date)
