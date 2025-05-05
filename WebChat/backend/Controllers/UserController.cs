@@ -41,9 +41,9 @@ public class UserController(UserService userService) : ControllerBase
         
             return Ok();
         }
-        catch (UnauthorizedAccessException ex)
+        catch (UnauthorizedAccessException)
         {
-            return StatusCode(500, $"{ex} Invalid username or password");
+            return StatusCode(500, "Invalid username or password");
         }
     }
 
@@ -56,9 +56,9 @@ public class UserController(UserService userService) : ControllerBase
             
             return Ok(user.ToDto());
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            return StatusCode(500, $"{ex} User is already registered");
+            return StatusCode(500, "User is already registered");
         }
     }
 
