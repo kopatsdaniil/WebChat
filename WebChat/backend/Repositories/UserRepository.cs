@@ -16,6 +16,11 @@ public class UserRepository(ApplicationDbContext context)
         return await context.Users.FirstOrDefaultAsync(x => x.Id == id);
     }
 
+    public async Task<User?> GetByUsernameAsync(string username)
+    {
+        return await context.Users.FirstOrDefaultAsync(x => x.Username == username);
+    }
+
     public async Task<User> CreateAsync(User user)
     {
         await context.Users.AddAsync(user);
