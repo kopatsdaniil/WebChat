@@ -2,11 +2,12 @@ namespace backend.Models;
 
 public class Message
 {
-    private Message(Guid id, string text, DateTime date)
+    private Message(Guid id, string text, DateTime date, Guid senderId)
     {
         Id = id;
         Text = text;
         Date = date;
+        SenderId = senderId;
     }
 
     public Message()
@@ -20,8 +21,8 @@ public class Message
     public User Sender { get; set; }
     public Guid SenderId { get; set; }
 
-    public static Message Create(Guid id, string text, DateTime date)
+    public static Message Create(Guid id, string text, DateTime date, Guid senderId)
     {
-        return new Message(id, text, date);
+        return new Message(id, text, date, senderId);
     }
 }
