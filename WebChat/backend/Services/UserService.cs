@@ -1,7 +1,7 @@
 using backend.Models;
 using backend.Repositories;
 
-namespace backend.Services.Implementations;
+namespace backend.Services;
 
 public class UserService(UserRepository userRepository)
 {
@@ -17,6 +17,10 @@ public class UserService(UserRepository userRepository)
 
     public async Task<User> Register(string username, string password)
     {
+        var user = await userRepository.GetByUsernameAsync(username);
+        
+        if(user != null) throw new Exception("Username already exists");
+        
         var passwordHash = Generate(password);
         
         return await userRepository.CreateAsync(User.Create(Guid.NewGuid(), username, passwordHash));
@@ -27,7 +31,7 @@ public class UserService(UserRepository userRepository)
         var user = await userRepository.GetByUsernameAsync(username);
         
         if (user == null) throw new UnauthorizedAccessException("Invalid username or password");
-
+        
         return Verify(password, user.PasswordHash);
     }
 
