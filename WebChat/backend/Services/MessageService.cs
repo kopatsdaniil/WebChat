@@ -25,9 +25,9 @@ public class MessageService(MessageRepository messageRepository)
         return await messageRepository.CreateAsync(Message.Create(Guid.NewGuid(), text, date, senderId));
     }
 
-    public async Task<Message?> UpdateAsync(Guid id, string text, DateTime date, Guid senderId)
+    public async Task<Message?> UpdateAsync(Guid id, string text)
     {
-        return await messageRepository.UpdateAsync(id, text, date, senderId);
+        return await messageRepository.UpdateAsync(id, text);
     }
 
     public async Task<Message?> DeleteAsync(Guid id)

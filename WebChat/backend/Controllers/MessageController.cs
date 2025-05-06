@@ -38,9 +38,9 @@ public class MessageController(MessageService messageService) : ControllerBase
     }
 
     [HttpPut("update/{id:guid}")]
-    public async Task<IActionResult> UpdateMessage(Guid id, [FromBody] MessageRequest request)
+    public async Task<IActionResult> UpdateMessage(Guid id, [FromBody] UpdateMessageRequest request)
     {
-        var message = await messageService.UpdateAsync(id, request.Text, DateTime.Now, request.SenderId);
+        var message = await messageService.UpdateAsync(id, request.Text);
         
         if (message == null) return BadRequest();
         

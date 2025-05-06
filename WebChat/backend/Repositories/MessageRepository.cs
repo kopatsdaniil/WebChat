@@ -29,15 +29,13 @@ public class MessageRepository(ApplicationDbContext context)
         return message;
     }
 
-    public async Task<Message?> UpdateAsync(Guid id, string text, DateTime date, Guid senderId)
+    public async Task<Message?> UpdateAsync(Guid id, string text)
     {
         var message = await GetByIdAsync(id);
         
         if (message == null) throw new KeyNotFoundException("Message not found");
         
         message.Text = text;
-        message.Date = date;
-        message.SenderId = senderId;
         
         await context.SaveChangesAsync();
         
