@@ -95,7 +95,7 @@ export default function ChatPage({ companionId }) {
           method: "PUT",
           mode: "cors",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ text: newMessage, senderId: currentUserId }),
+          body: JSON.stringify({ text: newMessage }),
         }
       );
       if (!response.ok) throw new Error("Ошибка обновления сообщения");
